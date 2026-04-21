@@ -460,11 +460,26 @@ with st.sidebar:
         help="Select the LLM provider for extraction and suppression."
     )
 
-    api_key = st.text_input(
-        "API Key",
-        type="password",
-        help="Required for Claude or OpenAI. Not needed for Ollama."
-    )
+    # Try to load API key from Streamlit secrets first
+    _secret_key = ""
+    try:
+        _secret_key = st.secrets.get("ANTHROPIC_API_KEY", "")
+    except Exception:
+        pass
+
+    if _secret_key:
+        api_key = _secret_key
+        st.markdown(
+            '<div style="font-size: 0.75rem; color: #4ECDC4; margin-bottom: 1rem;">'
+            '✓ API key loaded from secrets</div>',
+            unsafe_allow_html=True,
+        )
+    else:
+        api_key = st.text_input(
+            "API Key",
+            type="password",
+            help="Required for Claude or OpenAI. Not needed for Ollama."
+        )
 
     model_override = st.text_input(
         "Model Override (optional)",
