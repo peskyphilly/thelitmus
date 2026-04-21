@@ -1,0 +1,23 @@
+[
+  {
+    "id": "fp04_clean_001",
+    "label": "Customer explanation with independent documentary corroboration",
+    "should_trigger": [],
+    "rationale": "Alert for incoming transfer of £95,000. Customer stated this is the proceeds from a property sale. We have obtained the completion statement from the solicitor, Land Registry confirmation of the sale, and the corresponding bank statement from the buyer's solicitor showing the outgoing payment. The sale price, timing, and parties are consistent with the customer's explanation. No adverse media. Case closed, no further action.",
+    "metadata": {"customer_type": "retail", "case_type": "alert_review"}
+  },
+  {
+    "id": "fp04_clean_002",
+    "label": "Explanation present but case escalated anyway",
+    "should_trigger": [],
+    "rationale": "Transaction monitoring alert for unusual cash deposits totalling £42,000 over two weeks. The customer explained the deposits as takings from a market stall. However, the customer's profile does not reference self-employment or market trading. No business registration has been provided. While the explanation may be plausible, the inconsistency with the stated profile and the lack of corroboration warrant further review. Escalating to senior analyst for enhanced scrutiny.",
+    "metadata": {"customer_type": "retail", "case_type": "alert_review"}
+  },
+  {
+    "id": "fp04_clean_003",
+    "label": "RM input backed by independent evidence",
+    "should_trigger": [],
+    "rationale": "Periodic review of corporate client. Activity has increased from £300K to £700K per quarter. The relationship manager noted the client has secured a new contract with a government body. We have obtained a copy of the contract, verified the government entity via Companies House, and confirmed the contract value aligns with the increased activity. Source of funds for the uplift is therefore documented. No change to risk assessment required.",
+    "metadata": {"customer_type": "corporate", "case_type": "periodic_review"}
+  }
+]

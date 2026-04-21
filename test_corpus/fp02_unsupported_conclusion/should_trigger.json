@@ -1,0 +1,37 @@
+[
+  {
+    "id": "fp04_001",
+    "label": "Customer explanation accepted with zero corroboration",
+    "should_trigger": ["FP-04"],
+    "rationale": "Alert generated for a cash deposit of £28,000. The customer explained that the funds are from the sale of a vehicle. The customer stated the buyer paid in cash and they deposited the proceeds the following day. The explanation is plausible and consistent with the deposit amount. No adverse media on file. Case closed, no further action.",
+    "metadata": {"customer_type": "retail", "case_type": "alert_review"}
+  },
+  {
+    "id": "fp04_002",
+    "label": "RM reassurance treated as verification",
+    "should_trigger": ["FP-04"],
+    "rationale": "Periodic review of corporate client. Transaction volumes have increased significantly, from £500K per quarter to approximately £1.8M. The relationship manager has confirmed that the client has expanded their operations into two new markets and that the increased activity is expected. The RM has known the client for seven years and is comfortable with the activity. Source of wealth remains as stated at onboarding: director's equity in the business. No change to risk rating. Review complete.",
+    "metadata": {"customer_type": "corporate", "case_type": "periodic_review"}
+  },
+  {
+    "id": "fp04_003",
+    "label": "Customer explanation resolves one indicator but not others",
+    "should_trigger": ["FP-04"],
+    "rationale": "Transaction monitoring alert — customer received £120,000 from an overseas entity in a higher-risk jurisdiction. The customer explained this as a payment from a joint venture partner for completed consultancy work. Additionally, adverse media was identified linking the customer to a company under investigation in the originating jurisdiction, though the customer is not directly named. The customer's expected activity at onboarding did not include international receipts of this scale. The joint venture explanation is accepted. No further concerns. Case closed.",
+    "metadata": {"customer_type": "corporate", "case_type": "alert_review"}
+  },
+  {
+    "id": "fp04_004",
+    "label": "Accountant letter treated as independent verification",
+    "should_trigger": ["FP-04"],
+    "rationale": "EDD refresh for high-risk customer. Source of wealth has been queried. The customer's accountant has provided a letter confirming that the customer's wealth derives from a portfolio of rental properties and historical gains from cryptocurrency investments. No independent property records or exchange statements have been obtained. The accountant's letter is considered satisfactory. Risk rating maintained at high. Review complete, no further action required.",
+    "metadata": {"customer_type": "high_risk", "case_type": "refresh"}
+  },
+  {
+    "id": "fp04_005",
+    "label": "Family member vouches for source of funds",
+    "should_trigger": ["FP-04"],
+    "rationale": "Alert raised for incoming transfer of £75,000 from a personal account held by a family member. The customer states this is a gift from their father to assist with a property purchase. The father is not a customer of this bank. No documentation of the gift has been obtained. The customer has provided their father's contact details and confirmed the arrangement verbally. The explanation is reasonable and the case is closed with no suspicion identified.",
+    "metadata": {"customer_type": "retail", "case_type": "alert_review"}
+  }
+]

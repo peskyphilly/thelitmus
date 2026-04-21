@@ -1,0 +1,23 @@
+[
+  {
+    "id": "fp02_clean_001",
+    "label": "Proper closure with documentary SOW, defined activity, and analytical bridge",
+    "should_trigger": [],
+    "rationale": "Alert review — large incoming transfer of £200,000. The customer is a solicitor at a recognised law firm. Source of wealth is confirmed via three years of tax returns showing annual income between £180,000 and £220,000. Source of funds for this specific transfer is a completion payment from a property transaction; we have obtained the completion statement from the conveyancing file. Expected activity on this account includes periodic large sums relating to property transactions, which is consistent with the customer's profession. The transfer amount, source, and pattern are consistent with the documented profile. No adverse media. No sanctions matches. On this basis, the alert is closed as no suspicion is identified.",
+    "metadata": {"customer_type": "retail", "case_type": "alert_review"}
+  },
+  {
+    "id": "fp02_clean_002",
+    "label": "Escalation despite thin evidence — correct response to uncertainty",
+    "should_trigger": [],
+    "rationale": "Alert generated for unusual international wire pattern. The customer received three transfers from different originators in the UAE totalling £65,000 in two weeks. SOW has not been verified for this customer. The customer's profile shows them as a student. This activity is inconsistent with the stated profile and no satisfactory explanation has been provided. Escalating to the MLRO for review and potential SAR consideration.",
+    "metadata": {"customer_type": "retail", "case_type": "alert_review"}
+  },
+  {
+    "id": "fp02_clean_003",
+    "label": "Moderate conclusion with partial evidence and explicit bridge",
+    "should_trigger": [],
+    "rationale": "Periodic review of retail customer. The customer has been with the bank for five years. Account activity in the past 12 months shows a moderate increase in turnover compared to the prior period, from approximately £45,000 to £62,000. This increase is consistent with the customer's promotion to senior manager, which is documented via an updated employment reference obtained at the last review. Source of wealth is employment income, supported by payslips on file. While we have not obtained updated SOF documentation for the period, the transactional pattern does not suggest activity inconsistent with the customer's employment profile. On balance, the current risk rating of low remains appropriate. No further action at this stage.",
+    "metadata": {"customer_type": "retail", "case_type": "periodic_review"}
+  }
+]

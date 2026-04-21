@@ -1,0 +1,37 @@
+[
+  {
+    "id": "fp02_001",
+    "label": "Classic unsupported closure — strong conclusion, no SOW, no bridge",
+    "should_trigger": ["FP-02"],
+    "rationale": "This alert was generated following a series of incoming transfers totalling £145,000 over a three-month period. The customer has been with the bank for two years. No adverse media was identified during screening. The account activity is broadly consistent with the customer's stated occupation as a property consultant. No meaningful risk has been identified and the case is closed with no further action required.",
+    "metadata": {"customer_type": "retail"}
+  },
+  {
+    "id": "fp02_002",
+    "label": "Comfort conclusion on corporate file with absent SOW and SOF",
+    "should_trigger": ["FP-02"],
+    "rationale": "Periodic review of corporate client. The company was incorporated in 2019 and operates in import/export of consumer goods. The director holds a 100% shareholding. We note the business has processed approximately £2.3M in the past 12 months. Previous reviews have not raised concerns. Source of wealth has not been obtained for this review cycle. On balance, no significant concerns are identified and the risk rating remains at medium.",
+    "metadata": {"customer_type": "corporate", "case_type": "periodic_review"}
+  },
+  {
+    "id": "fp02_003",
+    "label": "Onboarding approved despite missing expected activity and vague SOW",
+    "should_trigger": ["FP-02"],
+    "rationale": "Customer onboarding — individual account. The applicant is a self-employed consultant in the technology sector. Source of wealth is described as business income. Expected account activity was not specifically defined at onboarding. KYC documentation has been obtained and is satisfactory. Screening clear. No adverse findings. Recommend approval to proceed.",
+    "metadata": {"customer_type": "retail", "case_type": "onboarding"}
+  },
+  {
+    "id": "fp02_004",
+    "label": "PEP file closed with thin evidence and unaddressed adverse media",
+    "should_trigger": ["FP-02"],
+    "rationale": "PEP periodic review. The customer is a senior government official in a West African jurisdiction. Adverse media was noted relating to allegations of corruption in a 2021 news article, though no formal charges have been filed. Account activity over the review period shows regular salary credits and moderate personal expenditure. Source of wealth is stated as government salary. No further action is recommended at this time.",
+    "metadata": {"customer_type": "pep", "case_type": "periodic_review"}
+  },
+  {
+    "id": "fp02_005",
+    "label": "Alert closure with multiple unaddressed indicators",
+    "should_trigger": ["FP-02"],
+    "rationale": "Transaction monitoring alert — rapid movement of funds. Customer received £85,000 via international wire from a jurisdiction classified as higher risk. The funds were dispersed across three domestic accounts within 48 hours. The customer's profile indicates they are a retired teacher. No prior alerts on file. Screening shows no matches. I am satisfied there is no suspicion and the alert can be closed.",
+    "metadata": {"customer_type": "retail", "case_type": "alert_review"}
+  }
+]

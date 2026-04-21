@@ -1,0 +1,30 @@
+[
+  {
+    "id": "adversarial_001",
+    "label": "Sounds thorough but conclusion outruns evidence — FP-02 should trigger",
+    "should_trigger": ["FP-02"],
+    "rationale": "Comprehensive review conducted. All relevant databases have been checked including World-Check, Dow Jones, and internal screening systems. The customer's account has been open for 18 months. Transaction history has been reviewed in full. Multiple incoming and outgoing payments were examined. The customer operates in the construction sector. We are aware of the general risk factors associated with this industry. Having considered the full picture, we are satisfied that no further action is required and the case can be closed at this time.",
+    "notes": "This rationale recites process steps without actually citing evidence. SOW absent, SOF absent, expected activity undefined, no analytical bridge. But the language sounds diligent."
+  },
+  {
+    "id": "adversarial_002",
+    "label": "Narrative sounds verified but corroboration is self-referential — FP-04 should trigger",
+    "should_trigger": ["FP-04"],
+    "rationale": "The customer was contacted regarding the unusual pattern of international transfers. The customer provided a detailed explanation: they are acting as an intermediary for a family property development in Turkey. The customer provided copies of WhatsApp messages with family members discussing the project, photographs of the construction site, and a written summary of the arrangement. We are satisfied that the customer's explanation is supported by the documentation provided. No further concerns. Case closed.",
+    "notes": "All 'corroboration' comes from the customer themselves (their WhatsApp, their photos, their summary). No independent verification: no Land Registry equivalent, no solicitor confirmation, no independent valuation. Self-corroborating."
+  },
+  {
+    "id": "adversarial_003",
+    "label": "Both FP-02 and FP-04 should co-trigger",
+    "should_trigger": ["FP-02", "FP-04"],
+    "rationale": "Alert review — customer received £250,000 from an entity in the Channel Islands. The customer explained that this represents the distribution of proceeds from a family trust of which they are a named beneficiary. The customer's accountant confirmed the trust arrangement by telephone. Source of wealth is stated as inherited wealth. No trust deed, distribution schedule, or bank statement from the trust has been obtained. Screening is clear. Given the plausible explanation and the accountant's confirmation, no suspicion is identified. Case closed.",
+    "notes": "Narrative accepted with only verbal third-party confirmation (accountant by phone). Conclusion is strong but evidence base is thin — no documentary SOW, no independent verification of trust. Both patterns should fire."
+  },
+  {
+    "id": "adversarial_004",
+    "label": "Actually clean — thorough analysis that should NOT trigger",
+    "should_trigger": [],
+    "rationale": "Alert review — incoming wire of £180,000 from a US bank account. The customer is a dual UK-US national who recently relocated. Source of funds: sale of a residential property in New York. We have obtained the closing disclosure from the US attorney, the MLS listing showing the sale price of $225,000, and the customer's prior US bank statement showing the incoming proceeds. The wire amount, after currency conversion and transaction costs, is consistent with the documented sale price. Source of wealth is employment income as a software engineer; we hold three years of US tax returns on file showing income between $145,000 and $170,000, consistent with the property purchase in 2019. Expected activity on this UK account is personal banking and a forthcoming UK property purchase, for which a mortgage agreement in principle has been provided. No adverse media. No concerns identified. Case closed.",
+    "notes": "Genuinely well-evidenced. Documentary corroboration from independent sources. Analytical bridge present. Should produce zero flags."
+  }
+]
