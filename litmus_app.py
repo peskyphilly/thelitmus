@@ -368,57 +368,11 @@ st.markdown("""
         font-family: 'DM Sans', sans-serif !important;
     }
 
-    /* ── Expander ── */
-    [data-testid="stExpander"] {
-        border: 1.5px solid #D6E4F0 !important;
-        border-radius: 10px !important;
-        margin-bottom: 0.75rem !important;
-    }
-
-    [data-testid="stExpander"] details {
-        border: none !important;
-    }
-
-    [data-testid="stExpander"] details > summary {
-        background: #F0F7FC !important;
-        border-bottom: 1px solid #D6E4F0 !important;
-        padding: 0.7rem 1rem !important;
-    }
-
-    [data-testid="stExpander"] details > summary:hover {
-        background: #E3F0FA !important;
-    }
-
-    [data-testid="stExpander"] details > summary p {
-        color: #4A9BD9 !important;
+    /* ── Checkbox styling ── */
+    .stCheckbox label {
         font-family: 'DM Sans', sans-serif !important;
-        font-size: 0.88rem !important;
-        font-weight: 600 !important;
-    }
-
-    /* Hide the broken material icon in expander toggle */
-    [data-testid="stExpander"] details > summary > span:first-child > div:first-child > span {
-        font-size: 0 !important;
-        visibility: hidden !important;
-        width: 0 !important;
-        overflow: hidden !important;
-    }
-
-    /* Add a clean arrow via CSS instead */
-    [data-testid="stExpander"] details > summary > span:first-child > div:first-child > span::after {
-        content: "▸" !important;
-        font-size: 0.88rem !important;
-        visibility: visible !important;
+        font-size: 0.85rem !important;
         color: #4A9BD9 !important;
-    }
-
-    [data-testid="stExpander"] details[open] > summary > span:first-child > div:first-child > span::after {
-        content: "▾" !important;
-    }
-
-    [data-testid="stExpanderDetails"] {
-        padding: 1rem !important;
-        background: #FFFFFF !important;
     }
 
     /* ── Selectbox fix ── */
@@ -554,15 +508,18 @@ with tab_analyze:
 
     analyze_clicked = st.button("Analyze", use_container_width=True)
 
-    with st.expander("Optional: Case Metadata"):
-            meta_case_type = st.selectbox(
-                "Case Type",
-                ["", "onboarding", "refresh", "alert_review", "sar_decision", "periodic_review"],
-            )
-            meta_customer_type = st.selectbox(
-                "Customer Type",
-                ["", "retail", "corporate", "pep", "high_risk", "correspondent"],
-            )
+    show_meta = st.checkbox("Add case metadata (optional)", value=False)
+    meta_case_type = ""
+    meta_customer_type = ""
+    if show_meta:
+        meta_case_type = st.selectbox(
+            "Case Type",
+            ["", "onboarding", "refresh", "alert_review", "sar_decision", "periodic_review"],
+        )
+        meta_customer_type = st.selectbox(
+            "Customer Type",
+            ["", "retail", "corporate", "pep", "high_risk", "correspondent"],
+        )
 
     if analyze_clicked and rationale.strip():
         metadata = {}
@@ -676,7 +633,8 @@ with tab_analyze:
 
         # ── Suppressed Flags ──
         if result.suppressed_flags:
-            with st.expander(f"Suppressed ({len(result.suppressed_flags)})"):
+            show_suppressed = st.checkbox(f"Show suppressed ({len(result.suppressed_flags)})", value=False)
+            if show_suppressed:
                 for flag in result.suppressed_flags:
                     st.markdown(
                         f'<div class="suppressed-card">'
@@ -691,7 +649,8 @@ with tab_analyze:
                     )
 
         # ── Schema View ──
-        with st.expander("Schema Extraction"):
+        show_schema = st.checkbox("Show schema extraction", value=False)
+        if show_schema:
             schema = result.schema
             schema_fields = [
                 ("Case Type", schema.case_type),
@@ -774,13 +733,15 @@ with tab_analyze:
 
         # ── Trigger Fields (raw) ──
         if result.retained_flags:
-            with st.expander("Trigger Fields (audit detail)"):
+            show_triggers = st.checkbox("Show trigger fields (audit detail)", value=False)
+            if show_triggers:
                 for flag in result.retained_flags:
                     st.markdown(f"**{flag.pattern_id}** — {flag.pattern_name}")
                     st.json(flag.trigger_fields)
 
         # ── Debug: Raw Schema ──
-        with st.expander("Debug: Raw Schema Output"):
+        show_debug = st.checkbox("Show debug: raw schema output", value=False)
+        if show_debug:
             st.markdown(f"**Flags from Layer B:** {len(result.all_flags)}")
             st.markdown(f"**Retained:** {len(result.retained_flags)}")
             st.markdown(f"**Suppressed:** {len(result.suppressed_flags)}")
