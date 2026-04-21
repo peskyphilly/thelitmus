@@ -19,7 +19,7 @@ from case_schema import CaseSchema
 from schema_extractor import SchemaExtractor
 from failure_pattern_engine import detect_failure_patterns, FailureFlag
 from suppression_engine import run_suppression, get_retained_flags, get_suppressed_flags
-from llm_provider import get_provider, LLMProvider
+from llm_provider import get_provider, LLMProvider, ClaudeProvider
 import config
 
 
@@ -132,9 +132,9 @@ def analyze_rationale(
     """
     Full theLitmus analysis pipeline.
 
-    Layer A: Extract rationale → CaseSchema
+    Layer A: Extract rationale → CaseSchema (uses Haiku for speed)
     Layer B: Detect failure patterns (deterministic)
-    Layer C: Suppress false positives + contextualise (LLM)
+    Layer C: Suppress false positives + contextualise (uses Sonnet for tone)
 
     Args:
         rationale: Raw analyst rationale text
@@ -147,11 +147,23 @@ def analyze_rationale(
     if provider is None:
         provider = _get_provider_from_config()
 
+    # Build a fast provider for extraction (Haiku) if using Claude
+    extraction_provider = provider
+    if isinstance(provider, ClaudeProvider):
+        try:
+            extraction_provider = ClaudeProvider(
+                api_key=provider.api_key,
+                model="claude-haiku-4-5-20251001",
+                max_tokens=provider.max_tokens,
+            )
+        except Exception:
+            extraction_provider = provider  # Fallback to default
+
     total_start = time.time()
 
-    # ── Layer A: Extraction ──
+    # ── Layer A: Extraction (Haiku — fast) ──
     t0 = time.time()
-    extractor = SchemaExtractor(provider)
+    extractor = SchemaExtractor(extraction_provider)
     schema = extractor.extract(rationale, metadata)
     extraction_time = (time.time() - t0) * 1000
 
@@ -160,7 +172,7 @@ def analyze_rationale(
     flags = detect_failure_patterns(schema)
     detection_time = (time.time() - t1) * 1000
 
-    # ── Layer C: Suppression ──
+    # ── Layer C: Suppression (Sonnet — better tone) ──
     suppression_time = 0.0
     if config.SUPPRESSION_ENABLED and flags:
         t2 = time.time()

@@ -560,31 +560,47 @@ with tab_analyze:
             st.stop()
 
         # ── Run pipeline ──
-        with st.spinner(""):
-            try:
-                # Set config
-                os.environ["ANTHROPIC_API_KEY"] = api_key if provider == "claude" else ""
-                os.environ["OPENAI_API_KEY"] = api_key if provider == "openai" else ""
+        progress_placeholder = st.empty()
+        progress_placeholder.markdown(
+            '<div style="display: flex; align-items: center; gap: 12px; padding: 1.5rem; '
+            'background: #F0F7FC; border: 1px solid #D6E4F0; border-radius: 10px; margin: 1rem 0;">'
+            '<div style="width: 20px; height: 20px; border: 3px solid #D6E4F0; '
+            'border-top: 3px solid #4A9BD9; border-radius: 50%; '
+            'animation: spin 0.8s linear infinite;"></div>'
+            '<div style="font-size: 0.88rem; color: #4A5568; font-family: DM Sans, sans-serif;">'
+            'Extracting reasoning structure...</div>'
+            '</div>'
+            '<style>@keyframes spin { 0% { transform: rotate(0deg); } '
+            '100% { transform: rotate(360deg); } }</style>',
+            unsafe_allow_html=True,
+        )
+        try:
+            # Set config
+            os.environ["ANTHROPIC_API_KEY"] = api_key if provider == "claude" else ""
+            os.environ["OPENAI_API_KEY"] = api_key if provider == "openai" else ""
 
-                import config as cfg
-                cfg.LLM_PROVIDER = provider
-                cfg.LLM_MODEL = model_override if model_override else ""
-                cfg.SUPPRESSION_ENABLED = suppression_enabled
+            import config as cfg
+            cfg.LLM_PROVIDER = provider
+            cfg.LLM_MODEL = model_override if model_override else ""
+            cfg.SUPPRESSION_ENABLED = suppression_enabled
 
-                from litmus import analyze_rationale
-                from llm_provider import get_provider
+            from litmus import analyze_rationale
+            from llm_provider import get_provider
 
-                llm = get_provider(
-                    provider_name=provider,
-                    api_key=api_key if api_key else None,
-                    model=model_override if model_override else None,
-                )
+            llm = get_provider(
+                provider_name=provider,
+                api_key=api_key if api_key else None,
+                model=model_override if model_override else None,
+            )
 
-                result = analyze_rationale(rationale, metadata, provider=llm)
+            result = analyze_rationale(rationale, metadata, provider=llm)
 
-            except Exception as e:
-                st.error(f"Analysis failed: {str(e)}")
-                st.stop()
+        except Exception as e:
+            progress_placeholder.empty()
+            st.error(f"Analysis failed: {str(e)}")
+            st.stop()
+
+        progress_placeholder.empty()
 
         # ── Results ──
         st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
