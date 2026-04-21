@@ -372,7 +372,16 @@ st.markdown("""
     .stCheckbox label {
         font-family: 'DM Sans', sans-serif !important;
         font-size: 0.85rem !important;
-        color: #4A9BD9 !important;
+    }
+
+    .stCheckbox label span {
+        color: #718096 !important;
+    }
+
+    .stCheckbox label p {
+        color: #718096 !important;
+        font-family: 'DM Sans', sans-serif !important;
+        font-size: 0.85rem !important;
     }
 
     /* ── Selectbox fix ── */
