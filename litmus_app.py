@@ -24,7 +24,7 @@ st.set_page_config(
     page_title="theLitmus",
     page_icon="◇",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 # ─── Custom CSS ───────────────────────────────────────────────────────
@@ -48,6 +48,8 @@ st.markdown("""
     /* ── Hide Streamlit defaults ── */
     #MainMenu, footer {visibility: hidden;}
     .stDeployButton {display: none;}
+    [data-testid="collapsedControl"] {display: none;}
+    section[data-testid="stSidebar"] {display: none;}
 
     /* ── Typography ── */
     h1, h2, h3 {
