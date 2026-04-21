@@ -382,6 +382,7 @@ st.markdown("""
     [data-testid="stExpander"] details > summary {
         background: #F0F7FC !important;
         border-bottom: 1px solid #D6E4F0 !important;
+        padding: 0.7rem 1rem !important;
     }
 
     [data-testid="stExpander"] details > summary:hover {
@@ -393,6 +394,26 @@ st.markdown("""
         font-family: 'DM Sans', sans-serif !important;
         font-size: 0.88rem !important;
         font-weight: 600 !important;
+    }
+
+    /* Hide the broken material icon in expander toggle */
+    [data-testid="stExpander"] details > summary > span:first-child > div:first-child > span {
+        font-size: 0 !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        overflow: hidden !important;
+    }
+
+    /* Add a clean arrow via CSS instead */
+    [data-testid="stExpander"] details > summary > span:first-child > div:first-child > span::after {
+        content: "▸" !important;
+        font-size: 0.88rem !important;
+        visibility: visible !important;
+        color: #4A9BD9 !important;
+    }
+
+    [data-testid="stExpander"] details[open] > summary > span:first-child > div:first-child > span::after {
+        content: "▾" !important;
     }
 
     [data-testid="stExpanderDetails"] {
@@ -531,13 +552,9 @@ with tab_analyze:
         label_visibility="collapsed",
     )
 
-    col_btn, col_meta = st.columns([1, 2])
+    analyze_clicked = st.button("Analyze", use_container_width=True)
 
-    with col_btn:
-        analyze_clicked = st.button("Analyze", use_container_width=True)
-
-    with col_meta:
-        with st.expander("Optional: Case Metadata"):
+    with st.expander("Optional: Case Metadata"):
             meta_case_type = st.selectbox(
                 "Case Type",
                 ["", "onboarding", "refresh", "alert_review", "sar_decision", "periodic_review"],
