@@ -46,10 +46,11 @@ st.markdown("""
     }
 
     /* ── Hide Streamlit defaults ── */
-    #MainMenu, footer {visibility: hidden;}
+    #MainMenu, footer, header {visibility: hidden;}
     .stDeployButton {display: none;}
     [data-testid="collapsedControl"] {display: none;}
     section[data-testid="stSidebar"] {display: none;}
+    .stAppToolbar {display: none !important;}
 
     /* ── Typography ── */
     h1, h2, h3 {
